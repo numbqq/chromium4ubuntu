@@ -9,25 +9,17 @@ fixes/widevine-locations.patch
 fixes/rust-clanglib.patch
 fixes/material-utils.patch
 fixes/perfetto.patch
-fixes/blink-frags.patch
 fixes/strlcpy.patch
-fixes/stats-collector.patch
 fixes/bindgen.patch
 fixes/memory-allocator-dcheck-assert-fix.patch
-fixes/chromium-browser-ui-missing-deps.patch
 fixes/clang-rust-target.patch
 # fixes/highway-include-path.patch
 
 upstream/mojo.patch
 upstream/mojo-null.patch
 upstream/ruy-include.patch
-upstream/crabbyav1f.patch
-upstream/lock-impl.patch
-upstream/containers-header.patch
-upstream/paint-layer-header.patch
 
 disable/tests.patch
-disable/unrar.patch
 disable/signin.patch
 disable/android.patch
 disable/catapult.patch
@@ -53,13 +45,13 @@ system/rollup.patch
 
 bookworm/clang16.patch
 bookworm/urlhelper-ctor.patch
-bookworm/nvt.patch
 bookworm/v8-wrappable.patch
 bookworm/rust-downgrade-osstr-users.patch
 bookworm/lex-3way.patch
 bookworm/traitors.patch
 bookworm/spaceship-operator.patch
 bookworm/constexpr.patch
+bookworm/blink-attrib.patch
 
 # Ungoogled Chromium
 ungoogled/disable-privacy-sandbox.patch
@@ -95,11 +87,11 @@ ppc64le/third_party/0002-third_party-lss-kernel-structs.patch
 
 ppc64le/webrtc/Rtc_base-system-arch.h-PPC.patch
 
-# ppc64le/crashpad/0002-Include-cstddef-to-fix-build.patch
 ppc64le/third_party/0004-third_party-crashpad-port-curl-transport-ppc64.patch
 
 ppc64le/workarounds/HACK-third_party-libvpx-use-generic-gnu.patch
 ppc64le/workarounds/HACK-debian-clang-disable-skia-musttail.patch
+ppc64le/workarounds/HACK-debian-clang-disable-base-musttail.patch
 
 ppc64le/libaom/0001-Add-ppc64-target-to-libaom.patch
 ppc64le/libaom/0001-Add-pregenerated-config-for-libaom-on-ppc64.patch
@@ -122,6 +114,7 @@ ppc64le/fixes/fix-rustc.patch
 ppc64le/fixes/fix-rust-linking.patch
 ppc64le/fixes/fix-breakpad-compile.patch
 ppc64le/fixes/fix-partition-alloc-compile.patch
+ppc64le/fixes/fix-different-data-layouts.patch
 ppc64le/v8/0002-Add-ppc64-trap-instructions.patch
 
 ppc64le/sandbox/fix-ppc64-linux-syscalls-headers.patch
