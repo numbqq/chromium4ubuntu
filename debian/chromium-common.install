@@ -10,6 +10,3 @@ out/Release/chrome_crashpad_handler usr/lib/chromium
 
 # only if building against bundled ICU
 out/Release/icudtl.dat usr/lib/chromium
-
-# only if building with use_system_minigbm=false
-out/Release/libminigbm.so usr/lib/chromium
