@@ -183,4 +183,6 @@ rockchip/0012-content-gpu-Only-depend-dri-for-X11.patch
 rockchip/0013-media-gpu-sandbox-Only-depend-dri-for-X11.patch
 rockchip/0014-ui-gfx-linux-Force-disabling-modifiers.patch
 rockchip/0015-HACK-ui-x11-Fix-config-choosing-error-with-Mali-DDK.patch
-amazingfate/0002-enable-widevine-on-arm64-linux-platform.patch
+
+netflix/enable-widevine-on-arm64-linux-platform.patch
+netflix/UA-string-Set-to-something-netflix-likes.patch
