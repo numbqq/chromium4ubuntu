@@ -73,9 +73,9 @@ index c8a49b3f0..b9fa8efd5 100644
 +
 +inline static constexpr char kLibV4l2Path[] =
 +#if defined(__aarch64__)
-+      "/usr/lib64/libv4l2.so";
++      "/usr/lib/aarch64-linux-gnu/libv4l2.so";
 +#else
-+      "/usr/lib/libv4l2.so";
++      "/usr/lib/arm-linux-gnueabihf/libv4l2.so";
 +#endif
 +#endif
 +
