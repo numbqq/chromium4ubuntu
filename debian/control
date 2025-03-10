@@ -1,7 +1,7 @@
 Source: chromium
 Section: web
 Priority: optional
-Maintainer: XtraDeb User <xtradeb.user@example.com>
+Maintainer: Daniel Richard G. <skunk@iSKUNK.ORG>
 XSBC-Original-Maintainer: Debian Chromium Team <chromium@packages.debian.org>
 Vcs-Git: https://salsa.debian.org/chromium-team/chromium.git
 Vcs-Browser: https://salsa.debian.org/chromium-team/chromium
@@ -15,7 +15,7 @@ Build-Depends:
  clang-18,
  clang-format-18,
  libclang-rt-18-dev,
- rustc-1.78,
+ rustc-1.80,
  bindgen,
  python3,
  pkgconf,
@@ -59,7 +59,6 @@ Build-Depends:
  libpci-dev,
  libcap-dev,
  libffi-dev,
- libhwy-dev,
  libkrb5-dev,
  libexif-dev,
  libflac-dev,
@@ -159,6 +158,20 @@ Description: web browser - minimal shell
  .
  This package provides a minimal version of the chromium user interface
  (the content shell).
+
+Package: chromium-headless-shell
+Architecture: i386 amd64 arm64 armhf ppc64el
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ chromium-common (= ${binary:Version}),
+Description: web browser - old headless shell
+ Web browser that aims to build a safer, faster, and more stable internet
+ browsing experience.
+ .
+ This package provides a headless (no GUI) version of the chromium browser,
+ which can be useful for doing things like generating PDFs. It is
+ equivalent to the 'chromium --headless=old' option that was removed.
 
 Package: chromium-driver
 Architecture: i386 amd64 arm64 armhf ppc64el

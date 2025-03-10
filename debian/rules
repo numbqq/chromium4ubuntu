@@ -48,7 +48,7 @@ defines:=clang_use_chrome_plugins=false
 # use system rust
 export RUSTC_BOOTSTRAP=1
 export CLANG_MVERS:=$(shell $(CC) --version | sed -n 's/.* clang version //p' | cut -d. -f1)
-rust_sysroot=/usr/lib/rust-1.78
+rust_sysroot=/usr/lib/rust-1.80
 defines+=rust_sysroot_absolute=\"$(rust_sysroot)\"
 defines+=rust_bindgen_root=\"/usr\"
 defines+=rustc_version=\"$(shell $(rust_sysroot)/bin/rustc --version)\"
@@ -69,7 +69,7 @@ ifeq (amd64,$(DEB_HOST_ARCH))
 defines+=host_cpu=\"x64\" use_vaapi=true
 endif
 ifeq (arm64,$(DEB_HOST_ARCH))
-defines+=host_cpu=\"arm64\" use_v4l2_codec=true use_vaapi=false use_v4lplugin=true use_linux_v4l2_only=true
+defines+=host_cpu=\"arm64\" use_v4l2_codec=true use_vaapi=false use_system_minigbm=false
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 defines+=host_cpu=\"arm\" use_v4l2_codec=true use_vaapi=false arm_use_neon=true
@@ -77,6 +77,11 @@ endif
 ifneq ($(filter arm64,$(DEB_BUILD_ARCH)),)
 # final link takes >150m, don't let Launchpad kill the build prematurely
 keepalive=debian/scripts/keepalive-wrapper.py 7200
+endif
+ifneq ($(filter armhf,$(DEB_HOST_ARCH)),)
+# clang gives us "argument unused during compilation" warnings for these
+export   DEB_CFLAGS_MAINT_STRIP+=-fno-stack-clash-protection
+export DEB_CXXFLAGS_MAINT_STRIP+=-fno-stack-clash-protection
 endif
 
 # thin lto requires >4 GB RAM, so avoid it on 32-bit architectures
@@ -104,7 +109,7 @@ defines+=is_debug=false \
          angle_build_tests=false \
          build_angle_perftests=false \
          treat_warnings_as_errors=false \
-         use_qt=false \
+         use_qt5=false use_qt6=false \
          is_cfi=false \
          chrome_pgo_phase=0 \
 
@@ -174,10 +179,13 @@ override_dh_auto_configure: test_armhf_neon
 override_dh_auto_build-arch:
 	gn gen out/Release --args="$(defines)"
 	# XtraDeb workaround for https://crbug.com/40943790
-	ninja -j$(njobs) -C out/Release ui/webui/resources/cr_components/history_clusters:build_ts
-	$(keepalive) ninja -j$(njobs) -C out/Release chrome chrome_sandbox content_shell chromedriver
+	# and https://issues.chromium.org/397258344
+	ninja -j$(njobs) -C out/Release ui/webui/resources/cr_components/history_clusters:build_ts \
+		obj/components/safe_browsing/content/common/proto/download_file_types_proto_gen.stamp
+	$(keepalive) ninja -j$(njobs) -C out/Release chrome chrome_sandbox content_shell chromedriver headless_shell
 	cp out/Release/chrome out/Release/chromium
 	cp out/Release/content_shell out/Release/chromium-shell
+	cp out/Release/headless_shell out/Release/chromium-headless-shell
 	cp out/Release/chrome_sandbox out/Release/chrome-sandbox
 	cp out/Release/locales/en-US.pak out/Release/resources
 	chmod 4755 out/Release/chrome-sandbox # suid sandbox
@@ -224,9 +232,12 @@ origtxz=$(debvers).orig.tar.xz
 removed=$(debvers).files-removed
 options=--sort=name --owner=0 --group=0 --numeric-owner --mtime="@$$(cat $(extract)/build/util/LASTCHANGE.committime)" --clamp-mtime
 print_elapsed=echo $$(($$(date +%s) - $$(cat $(seconds)))) seconds
+minigbm_url=https://chromium.googlesource.com/chromiumos/platform/minigbm/+archive/refs/heads
+minigbm_tarball=release-R110-15278.B.tar.gz
 
 get-orig-source:
-	#wget -nv --show-progress -c $(url)/$(tarball) -O ../$(tarball)
+	wget -nv --show-progress -c $(url)/$(tarball) -O ../$(tarball)
+	wget -nv --show-progress -c $(minigbm_url)/$(minigbm_tarball) -O ../$(minigbm_tarball)
 	@date +%s > $(seconds)
 	top="$$(tar tf ../$(tarball) | head -n1)" \
 	&& test -n "$$top" \
@@ -237,6 +248,8 @@ get-orig-source:
 	rm -rf $(extract)
 	@$(print_elapsed); echo
 	tar --exclude-from=$(debvers).excludes -xf ../$(tarball)
+	rm -rf $(extract)/third_party/minigbm/src/*
+	tar --exclude-from=$(debvers).excludes -xf ../$(minigbm_tarball) -C $(extract)/third_party/minigbm/src
 	rm -f $(debvers).excludes
 	find $(extract) -depth -type d -empty -delete
 	@$(print_elapsed); echo

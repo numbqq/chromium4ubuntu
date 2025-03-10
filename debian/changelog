@@ -1,15 +1,156 @@
-chromium (132.0.6834.210-1xtradeb1.2404.1) noble; urgency=high
+chromium (134.0.6998.35-2xtradeb1.2404.1) noble; urgency=high
 
-  * Bump to Extended Stable Desktop Release
-  * Added rockchip patches for chromium
+  * Chromium build for amlogic devices with dumb minigbm
+  * Added patches to support widevine and netflix playback
+  * Added patches to support H265 and AV1 playback
 
- -- Gunjan Gupta <gunjan@wesion.com>  Thu, 27 Feb 2025 15:51:55 +0530
+ -- Gunjan Gupta <gunjan@wesion.com>  Sat, 08 Mar 2025 15:08:56 +0530
 
-chromium (132.0.6834.159-1xtradeb1.2404.1) noble; urgency=high
+chromium (134.0.6998.35-2xtradeb1.2404.1) noble; urgency=high
 
   * XtraDeb conversion for Ubuntu 24.04/noble.
 
- -- XtraDeb User <xtradeb.user@example.com>  Thu, 27 Feb 2025 15:51:55 +0530
+ -- Daniel Richard G. <skunk@iSKUNK.ORG>  Fri, 07 Mar 2025 02:08:56 -0500
+
+chromium (134.0.6998.35-2) unstable; urgency=high
+
+  * Revert "Have chromium-driver depend upon chromium-common instead of
+    chromium" to make autopkgtests of various packages happy.
+
+ -- Andres Salomon <dilinger@debian.org>  Fri, 07 Mar 2025 00:58:06 -0500
+
+chromium (134.0.6998.35-1) unstable; urgency=high
+
+  [ Andres Salomon ]
+  * New upstream stable release.
+    - CVE-2025-1914: Out of bounds read in V8. Reported by
+      Zhenghang Xiao (@Kipreyyy) and Nan Wang (@eternalsakura13).
+    - CVE-2025-1915: Improper Limitation of a Pathname to a Restricted
+      Directory in DevTools. Reported by Topi Lassila.
+    - CVE-2025-1916: Use after free in Profiles.
+      Reported by parkminchan, SSD Labs Korea.
+    - CVE-2025-1917: Inappropriate Implementation in Browser UI.
+      Reported by Khalil Zhani.
+    - CVE-2025-1918: Out of bounds read in PDFium. Reported by asnine.
+    - CVE-2025-1919: Out of bounds read in Media.
+      Reported by @Bl1nnnk and @Pisanbao.
+    - CVE-2025-1921: Inappropriate Implementation in Media Stream.
+      Reported by Kaiido.
+    - CVE-2025-1922: Inappropriate Implementation in Selection.
+      Reported by Alesandro Ortiz.
+    - CVE-2025-1923: Inappropriate Implementation in Permission Prompts.
+      Reported by Khalil Zhani.
+  * d/patches:
+    - fixes/widevine-revision.patch: drop. Upstream says "with CDMs using
+      manifest-based registration, no need to" hardcode version string.
+    - disable/catapult.patch: refresh.
+    - bookworm/clang19.patch: refresh.
+    - ungoogled/disable-privacy-sandbox.patch: refresh from ungoogled.
+    - bookworm/gn-allowlist.patch: add workaround for older gn.
+    - bookworm/adler1.patch: add workaround for older rust.
+    - fixes/stdatomic.patch: add build fix to ensure <stdatomic.h> isn't
+      used.
+    - fixes/variant.patch: add missing header include.
+    - upstream/qualifications.patch: add fix to silence annoying warnings.
+    - upstream/optional.patch: add more missing header includes.
+  * d/rules: update to ensure both qt5 AND qt6 are disabled.
+
+  [ Timothy Pearson ]
+  * d/patches:
+    - fixes/swiftshader-llvm.patch: Add LLVM patches from upstream LLVM
+      project to fix integrated SwiftShader LLVM FTBFS
+  * d/patches/ppc64le:
+    - third_party/0001-Add-PPC64-support-for-boringssl.patch: Refresh for
+      upstream changes
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 05 Mar 2025 13:26:45 -0500
+
+chromium (133.0.6943.141-2) unstable; urgency=high
+
+  * Add a bunch of lintian overrides for embedded libraries.
+
+ -- Andres Salomon <dilinger@debian.org>  Fri, 28 Feb 2025 22:37:45 -0500
+
+chromium (133.0.6943.141-1) unstable; urgency=high
+
+  * New upstream security release (no CVEs).
+  * Move various .pak files from chromium package to chromium-common.
+  * Have chromium-driver depend upon chromium-common instead of chromium.
+  * Double quote args in chromium-shell script (closes: #971906).
+  * Add new package 'chromium-headless-shell' that is equivalent to the
+    now-removed --headless=old argument (closes: #1081204).
+  * d/patches/fixes/headless-gn.patch: add build fix for headless_shell.
+
+ -- Andres Salomon <dilinger@debian.org>  Fri, 28 Feb 2025 16:16:33 -0500
+
+chromium (133.0.6943.126-1) unstable; urgency=high
+
+  * New upstream security release.
+    - CVE-2025-0999: Heap buffer overflow in V8.
+      Reported by Seunghyun Lee (@0x10n).
+    - CVE-2025-1426: Heap buffer overflow in GPU.
+      Reported by un3xploitable && GF.
+    - CVE-2025-1006: Use after free in Network. Reported by Tal Keren, Sam
+      Agranat, Eran Rom, Edouard Bochin, Adam Hatsir of Palo Alto Networks.
+  * d/patches:
+    - fixes/bindgen-unsafe-op.patch: drop now that sid's bindgen is fixed.
+
+ -- Andres Salomon <dilinger@debian.org>  Thu, 20 Feb 2025 00:16:49 -0500
+
+chromium (133.0.6943.98-1) unstable; urgency=high
+
+  * New upstream security release.
+    - CVE-2025-0995: Use after free in V8. Reported by Popax21.
+    - CVE-2025-0996: Inappropriate implementation in Browser UI.
+      Reported by yuki yamaoto.
+    - CVE-2025-0997: Use after free in Navigation. Reported by asnine.
+    - CVE-2025-0998: Out of bounds memory access in V8.
+      Reported by Alan Goodman.
+  * d/patches:
+    - fixes/bindgen-unsafe-op.patch: add a workaround for a bindgen bug
+      that causes FTBFS on armhf.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 12 Feb 2025 21:35:00 -0500
+
+chromium (133.0.6943.53-1) unstable; urgency=high
+
+  [ Andres Salomon ]
+  * New upstream stable release.
+    - CVE-2025-0444: Use after free in Skia.
+      Reported by Francisco Alonso (@revskills).
+    - CVE-2025-0445: Use after free in V8. Reported by 303f06e3.
+    - CVE-2025-0451: Inappropriate implementation in Extensions API.
+      Reported by Vitor Torres and Alesandro Ortiz.
+  * Stop deleting third_party/highway, drop libhwy-dev build-dep, and
+    build against the bundled libhwy due to new API requirements.
+  * d/patches:
+    - fixes/highway-include-path.patch: drop; switching to bundled hwy.
+    - upstream/array.patch: drop, merged upstream.
+    - upstream/ink-isfinite.patch: drop, merged upstream.
+    - upstream/ruy-include.patch: drop, merged upstream.
+    - upstream/uint.patch: drop, merged upstream.
+    - upstream/variant.patch: drop, merged upstream.
+    - upstream/webrtc-optional.patch: drop, merged upstream.
+    - fixes/perfetto.patch: drop, merged upstream.
+    - system/event.patch: drop, upstream no longer uses libevent.
+    - ungoogled/disable-privacy-sandbox.patch: refresh from upstream.
+    - fixes/highway-include-path.patch: delete a libhwy build test, add
+      another header build fix.
+    - bookworm/clang19.patch: add patch to disable unsupported build args
+    - fixes/optional.patch: add header build fix.
+
+  [ Timothy Pearson ]
+  * d/patches/ppc64le:
+    - third_party/0001-Add-PPC64-support-for-boringssl.patch: Refresh for
+      upstream changes
+    - third_party/0002-Add-PPC64-generated-files-for-boringssl.patch:
+      Refresh for upstream changes
+    - third_party/0002-third_party-libvpx-Remove-bad-ppc64-config.patch:
+      Refresh for upstream changes
+    - third_party/0001-third-party-hwy-wrong-include.patch: Work around
+      incorrect header include
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 05 Feb 2025 00:18:56 -0500
 
 chromium (132.0.6834.159-1) unstable; urgency=high
 
