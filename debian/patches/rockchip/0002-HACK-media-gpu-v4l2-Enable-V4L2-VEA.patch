@@ -1,7 +1,7 @@
-From 4809fc607166cbd8be4094222ce0651c7b2fe9c5 Mon Sep 17 00:00:00 2001
+From 7a1d8573eca88ca46d4eca899090a3358bb009c5 Mon Sep 17 00:00:00 2001
 From: Jeffy Chen <jeffy.chen@rock-chips.com>
 Date: Mon, 13 Feb 2023 15:30:55 +0800
-Subject: [PATCH 02/16] HACK: media: gpu: v4l2: Enable V4L2 VEA
+Subject: [PATCH 02/15] HACK: media: gpu: v4l2: Enable V4L2 VEA
 
 Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
 ---
@@ -10,7 +10,7 @@ Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
  2 files changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/media/gpu/gpu_video_encode_accelerator_factory.cc b/media/gpu/gpu_video_encode_accelerator_factory.cc
-index daede9ea3..8d745c92a 100644
+index 54d88871f..0b0665283 100644
 --- a/media/gpu/gpu_video_encode_accelerator_factory.cc
 +++ b/media/gpu/gpu_video_encode_accelerator_factory.cc
 @@ -47,7 +47,8 @@ namespace media {
@@ -24,11 +24,11 @@ index daede9ea3..8d745c92a 100644
    // a DMA-buf, which is not supported upstream.
    return base::WrapUnique<VideoEncodeAccelerator>(
 diff --git a/media/gpu/v4l2/BUILD.gn b/media/gpu/v4l2/BUILD.gn
-index 3f3d86852..99a378f19 100644
+index 8b444e2f9..f72ffded6 100644
 --- a/media/gpu/v4l2/BUILD.gn
 +++ b/media/gpu/v4l2/BUILD.gn
-@@ -98,7 +98,12 @@ source_set("v4l2") {
-       "stateless/av1_delegate.h",
+@@ -78,7 +78,12 @@ source_set("v4l2") {
+       # AV1 delegate depends on header files only in ChromeOS SDK
        "v4l2_video_decoder_delegate_av1.cc",
        "v4l2_video_decoder_delegate_av1.h",
 +    ]

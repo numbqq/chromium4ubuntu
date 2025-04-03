@@ -1,7 +1,7 @@
-From 854504d932f6fe4f759644889ab450bc565b0910 Mon Sep 17 00:00:00 2001
+From cc115e663406646037e16482ddf02845576645d0 Mon Sep 17 00:00:00 2001
 From: Jeffy Chen <jeffy.chen@rock-chips.com>
 Date: Thu, 5 Nov 2020 12:22:52 +0800
-Subject: [PATCH 08/16] media: capture: linux: Prefer using the first device
+Subject: [PATCH 08/15] media: capture: linux: Prefer using the first device
 
 Somehow the newest chromium would prefer using the last device in some
 cases, e.g. apprtc.
