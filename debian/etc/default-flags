@@ -19,8 +19,7 @@ export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --media-router=0"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --use-gl=angle --use-angle=gles-egl --use-cmd-decoder=passthrough --ozone-platform-hint=wayland"
 
 # Sandbox related flags
-export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --no-sandbox --gpu-sandbox-start-early --ignore-gpu-blocklist --enable-unsafe-webgpu"
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --no-sandbox --gpu-sandbox-start-early --ignore-gpu-blocklist --enable-accelerated-video-decode"
 
 # Enable HW accelerated encode and decode
-export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-accelerated-video-decode --enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
-
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-features=AcceleratedVideoEncoder,AcceleratedVideoDecoder,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL"

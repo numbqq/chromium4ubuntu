@@ -1,7 +1,7 @@
-From 381e07a96f58af79b934075f2d41b49a0976e687 Mon Sep 17 00:00:00 2001
+From 17c9851caf4e79bfbc10ed29f08cd0a2fd8ab568 Mon Sep 17 00:00:00 2001
 From: Jeffy Chen <jeffy.chen@rock-chips.com>
 Date: Mon, 1 Jul 2019 10:37:35 +0800
-Subject: [PATCH 05/16] media: capture: linux: Support libv4l2 plugins
+Subject: [PATCH 05/15] media: capture: linux: Support libv4l2 plugins
 
 Allow using libv4l2 plugins for linux v4l2 capture devices.
 
@@ -15,7 +15,7 @@ Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
  3 files changed, 75 insertions(+), 1 deletion(-)
 
 diff --git a/media/capture/BUILD.gn b/media/capture/BUILD.gn
-index 00ac7445f..3b59dcbcf 100644
+index 9139fbbfc..bf8fd9dd9 100644
 --- a/media/capture/BUILD.gn
 +++ b/media/capture/BUILD.gn
 @@ -2,6 +2,7 @@
@@ -26,7 +26,7 @@ index 00ac7445f..3b59dcbcf 100644
  import("//build/config/chromeos/ui_mode.gni")
  import("//build/config/features.gni")
  import("//build/config/ui.gni")
-@@ -19,6 +20,14 @@ group("capture") {
+@@ -20,6 +21,14 @@ group("capture") {
    ]
  }
  
@@ -41,9 +41,9 @@ index 00ac7445f..3b59dcbcf 100644
  component("capture_switches") {
    defines = [ "CAPTURE_IMPLEMENTATION" ]
    sources = [
-@@ -249,6 +258,12 @@ component("capture_lib") {
-       "video/linux/video_capture_device_linux.h",
-     ]
+@@ -262,6 +271,12 @@ component("capture_lib") {
+       ]
+     }
      deps += [ "//gpu/command_buffer/client" ]
 +
 +    public_deps += [ ":buildflags" ]

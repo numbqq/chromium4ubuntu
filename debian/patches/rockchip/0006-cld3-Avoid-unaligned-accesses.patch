@@ -1,7 +1,7 @@
-From 3adfa69a11fe8d5cf11caa2638c8d363b46fd888 Mon Sep 17 00:00:00 2001
+From 78340c54c27e1d037966465f84655a6e36056662 Mon Sep 17 00:00:00 2001
 From: Jeffy Chen <jeffy.chen@rock-chips.com>
 Date: Fri, 27 Mar 2020 17:48:20 +0800
-Subject: [PATCH 06/16] cld3: Avoid unaligned accesses
+Subject: [PATCH 06/15] cld3: Avoid unaligned accesses
 
 Although the unaligned memory accesses are enabled, somehow i still hit
 the SIGBUS:
