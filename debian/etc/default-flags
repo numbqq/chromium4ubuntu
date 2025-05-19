@@ -22,4 +22,4 @@ export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --use-gl=angle --use-angle=gles-egl --use
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --no-sandbox --gpu-sandbox-start-early --ignore-gpu-blocklist --enable-accelerated-video-decode"
 
 # Enable HW accelerated encode and decode
-export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-features=AcceleratedVideoDecoder,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,kAcceleratedVideoEncodeLinux"
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-features=AcceleratedVideoEncoder,AcceleratedVideoDecoder,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL"

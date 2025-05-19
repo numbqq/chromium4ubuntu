@@ -1,3 +1,9 @@
+chromium (132.0.6834.223-1xtradeb1.2404.1) noble; urgency=high
+
+  * Latest LTS release with rockchip patches
+
+ -- Gunjan Gupta <gunjan@wesion.com>  Fri, 16 May 2025 12:38:41 +0530
+
 chromium (132.0.6834.214-1xtradeb1.2404.1) noble; urgency=high
 
   * Latest LTS release with rockchip patches
