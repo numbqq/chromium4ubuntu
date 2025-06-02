@@ -3,6 +3,7 @@ debianization/sandbox.patch
 debianization/master-preferences.patch
 debianization/clang-version.patch
 debianization/swiftshader-use-llvm-16.patch
+debianization/cross-build.patch
 
 fixes/ps-print.patch
 fixes/widevine-locations.patch
@@ -11,23 +12,27 @@ fixes/material-utils.patch
 fixes/strlcpy.patch
 fixes/bindgen.patch
 fixes/memory-allocator-dcheck-assert-fix.patch
-fixes/clang-rust-target.patch
 fixes/predictor-denial-of-service.patch
 fixes/fix-assert-in-vnc-sessions.patch
 fixes/armhf-timespec.patch
 fixes/updater-test.patch
 #xtradeb#fixes/absl-optional.patch
 fixes/font-gc-asan.patch
-fixes/lens-optional.patch
 fixes/libsync-rk3588-panthor.patch
-fixes/optional.patch
 fixes/headless-gn.patch
 fixes/stdatomic.patch
-fixes/variant.patch
-fixes/swiftshader-llvm.patch
+fixes/make-pair.patch
+fixes/media-cstdint.patch
+fixes/armhf-no-thumb.patch
 
-upstream/qualifications.patch
-upstream/optional.patch
+upstream/arm32-crel.patch
+upstream/cross-build-target.patch
+upstream/span-fwd.patch
+upstream/mojo-optional.patch
+upstream/opener-heur.patch
+upstream/allowed-state.patch
+upstream/pdfium-libpng.patch
+upstream/safety-hub-set.patch
 
 disable/tests.patch
 disable/tests-swiftshader.patch
@@ -41,6 +46,8 @@ disable/driver-chrome-path.patch
 disable/widevine-cdm-cu.patch
 disable/clang-version-check.patch
 disable/screen-ai-blob.patch
+disable/buildtools-libc.patch
+disable/node-version-ck.patch
 
 system/icu-shim.patch
 system/jpeg.patch
@@ -50,11 +57,13 @@ system/eu-strip.patch
 system/rapidjson.patch
 system/rollup.patch
 
+bookworm/gn-revert-path-exists.patch
 bookworm/clang19.patch
 bookworm/constflatset.patch
 bookworm/libxml-parseerr.patch
 bookworm/gn-allowlist.patch
 bookworm/adler1.patch
+bookworm/constexpr3.patch
 
 # unused patches:
 # bookworm/blink-attrib.patch
@@ -102,7 +111,6 @@ ppc64le/sandbox/0008-sandbox-fix-ppc64le-glibc234.patch
 ppc64le/third_party/0001-third_party-angle-Include-missing-header-cstddef-in-.patch
 ppc64le/third_party/0001-Add-PPC64-support-for-boringssl.patch
 ppc64le/third_party/0001-third_party-libvpx-Properly-generate-gni-on-ppc64.patch
-ppc64le/third_party/0001-third_party-lss-Don-t-look-for-mmap2-on-ppc64.patch
 ppc64le/third_party/0001-third_party-pffft-Include-altivec.h-on-ppc64-with-SI.patch
 ppc64le/third_party/0001-swiftshader-fix-build.patch
 ppc64le/third_party/0001-third-party-hwy-wrong-include.patch
@@ -127,6 +135,9 @@ ppc64le/third_party/0003-third_party-libvpx-Add-ppc64-generated-config.patch
 ppc64le/third_party/0003-third_party-ffmpeg-Add-ppc64-generated-config.patch
 ppc64le/third_party/0004-third_party-libvpx-work-around-ambiguous-vsx.patch
 
+ppc64le/third_party/0001-add-xnn-ppc64el-support.patch
+ppc64le/third_party/0002-regenerate-xnn-buildgn.patch
+
 # Enable VSX acceleration in Skia.  Requires POWER8 or higher.
 ppc64le/third_party/skia-vsx-instructions.patch
 
@@ -139,6 +150,7 @@ ppc64le/fixes/fix-rust-linking.patch
 ppc64le/fixes/fix-breakpad-compile.patch
 ppc64le/fixes/fix-partition-alloc-compile.patch
 ppc64le/fixes/fix-different-data-layouts.patch
+ppc64le/v8/0001-Enable-ppc64-pointer-compression.patch
 ppc64le/v8/0002-Add-ppc64-trap-instructions.patch
 
 ppc64le/sandbox/fix-ppc64-linux-syscalls-headers.patch
@@ -151,7 +163,6 @@ ppc64le/core/add-ppc64-pthread-stack-size.patch
 ppc64le/fixes/fix-study-crash.patch
 
 ppc64le/core/add-ppc64-architecture-to-extensions.diff
-ppc64le/core/cargo-add-ppc64.diff
 
 # Suppress harmless compiler warning messages that appear on ppc64 due to arch-specific warning flags being passed
 ppc64le/fixes/fix-unknown-warning-option-messages.diff
@@ -162,20 +173,29 @@ ppc64le/fixes/fix-unknown-warning-option-messages.diff
 
 # XtraDeb
 bookworm/cacheline.patch
+bookworm/derivre-create.patch
 bookworm/foreach.patch
+bookworm/fmodf.patch
 bookworm/gn-absl.patch
 bookworm/gn-funcs.patch
 bookworm/highway-blink.patch
 bookworm/less-void.patch
 bookworm/modff.patch
+bookworm/node18-import.patch
+bookworm/rust-is-none-or.patch
 bookworm/rust-visibility.patch
 fixes/absl-optional-bookworm.patch
 xtradeb/clang-unknown-options.patch
+xtradeb/eslint.patch
+xtradeb/flat-map-try-emplace.patch
 xtradeb/fortify-level-3.patch
 xtradeb/template-args.patch
+minigbm-compilation-fix.patch
 fixes/gbm_pixmap-Avoid-spamming-BO-create-failures.patch
 fixes/reduce_stderr_spam.patch
 netflix/UA-string-Set-to-something-netflix-likes.patch
 netflix/enable-widevine-on-arm64-linux-platform.patch
-v4l/enable-v4l2-av1-decoder-for-linux.patch
-v4l/media-gpu-v4l2-Enable-HEVC-stateful-video-decoder-on.patch
+amlogic/Video-decode-Fix-up-V4L2-decoder-devices.patch
+amlogic/v4l2decode-Fix-instance-counting-if-instance-limit-e.patch
+amlogic/v4l2decode-Restrict-instances-to-2.patch
+amlogic/wayland-gbm-pixmap.patch

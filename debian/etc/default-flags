@@ -16,4 +16,7 @@ export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-pings"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --media-router=0"
 
 # Add flags needed for Khadas devices
-export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --ignore-gpu-blocklist --ozone-platform-hint=wayland"
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --ignore-gpu-blocklist --ozone-platform-hint=wayland --use-angle=gles-egl"
+
+# Enable HW Accelerated Video Decode
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-features=AcceleratedVideoDecoder,AcceleratedVideoDecodeLinuxGL"

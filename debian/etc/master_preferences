@@ -18,7 +18,6 @@
      "enabled": true,
      "encoding": "UTF-8",
      "favicon_url": "https://duckduckgo.com/favicon.ico",
-     "new_tab_url": "https://duckduckgo.com/chrome_newtab",
      "id": 2,
      "keyword": "duckduckgo.com",
      "name": "DuckDuckGo",
@@ -65,5 +64,5 @@
   "default_apps": "noinstall",
   "hide_web_store_icon": true,
   "homepage_is_newtabpage": true,
-  "homepage": "https://www.debian.org"
+  "homepage": "https://www.khadas.com"
 }
