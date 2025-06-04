@@ -1,16 +1,287 @@
-chromium (134.0.6998.35-2xtradeb1.2404.1) noble; urgency=high
+chromium (2:137.0.7151.55-3xtradeb1.2404.1) noble; urgency=high
 
-  * Chromium build for amlogic devices with dumb minigbm
-  * Added patches to support widevine and netflix playback
-  * Added patches to support H265 and AV1 playback
+  * Chromium 137 adopted for VIM boards
 
- -- Gunjan Gupta <gunjan@wesion.com>  Sat, 08 Mar 2025 15:08:56 +0530
+ -- Gunjan Gupta <gunjan@wesion.com>  Sun, 01 Jun 2025 17:46:48 +0530
 
-chromium (134.0.6998.35-2xtradeb1.2404.1) noble; urgency=high
+chromium (137.0.7151.55-3xtradeb1.2404.1) noble; urgency=high
 
   * XtraDeb conversion for Ubuntu 24.04/noble.
 
- -- Daniel Richard G. <skunk@iSKUNK.ORG>  Fri, 07 Mar 2025 02:08:56 -0500
+ -- Daniel Richard G. <skunk@iSKUNK.ORG>  Wed, 28 May 2025 23:46:48 -0400
+
+chromium (137.0.7151.55-3) unstable; urgency=high
+
+  [ Timothy Pearson ]
+  * Fix FTBFS on ppc64el due to third party xnnpack library
+  * d/patches/ppc64le:
+    - third_party/0001-add-xnn-ppc64el-support.patch: Add ppc64el support to
+      xnn build system
+    - third_party/0002-regenerate-xnn-buildgn.patch: Regenerate xnn BUILD.gn
+      file
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 28 May 2025 18:47:40 -0400
+
+chromium (137.0.7151.55-2) unstable; urgency=high
+
+  * Switch build-deps with :all to :native.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 28 May 2025 01:55:46 -0400
+
+chromium (137.0.7151.55-1) unstable; urgency=high
+
+  [ Daniel Richard G. ]
+  * d/control: Elaborate Build-Depends: clause for a cross build. Also drop
+    x11-apps, as it appears to be unused, as well as libmodpbase64-dev as
+    it is built in-tree under third_party/modp_b64/. Add a Build-Conflicts:
+    clause to avoid some snafus on Ubuntu.
+  * d/patches:
+    - debianization/cross-build.patch: New patch implementing the bulk of our
+      cross-build support.
+    - upstream/cross-build-target.patch: New upstream patch that sets
+      --target=... explicitly on all builds. Needed for a cross build.
+    - fixes/clang-rust-target.patch: Drop, as this patch is made redundant by
+      the preceding one.
+  * d/rules: Add settings and environment exports needed for a cross build.
+
+  [ Andres Salomon ]
+  * New upstream stable release.
+    - CVE-2025-5063: Use after free in Compositing. Reported by Anonymous.
+    - CVE-2025-5280: Out of bounds write in V8. Reported by [pwn2car].
+    - CVE-2025-5064: Inappropriate implementation in Background Fetch API.
+      Reported by Maurice Dauer .
+    - CVE-2025-5065: Inappropriate implementation in FileSystemAccess API.
+      Reported by NDevTK.
+    - CVE-2025-5066: Inappropriate implementation in Messages.
+      Reported by Mohit Raj (shadow2639) .
+    - CVE-2025-5281: Inappropriate implementation in BFCache.
+      Reported by Jesper van den Ende (Pelican Party Studios).
+    - CVE-2025-5283: Use after free in libvpx. Reported by Mozilla.
+    - CVE-2025-5067: Inappropriate implementation in Tab Strip.
+      Reported by Khalil Zhani.
+  * d/control: switch bindgen:any build-dep to bindgen:native.
+  * d/rules: disable optimize_webui for now due to a rollup 3.x issue.
+  * d/patches:
+    - upstream/media-optional.patch: drop, merged upstream.
+    - fixes/media-cstdint.patch: drop part of patch merged upstream.
+    - fixes/perfetto-nullptr.patch: drop due to upstream code changes.
+    - upstream/arm32-crel.patch: refresh.
+    - disable/tests.patch: refresh.
+    - system/gperf.patch: drop, merged upstream.
+    - bookworm/gn-revert-path-exists.patch: refresh.
+    - bookworm/gn-allowlist.patch: refresh.
+    - ungoogled/disable-privacy-sandbox.patch: update from ungoogled.
+    - bookworm/clang19.patch: add new unsupported arg removal
+      (-fextend-variable-liveness).
+    - upstream/span-fwd.patch: add build fix pulled from upstream.
+    - upstream/mojo-optional.patch: add build fix pulled from upstream.
+    - bookworm/constexpr3.patch: add yet another constexpr workaround.
+    - upstream/opener-heur.patch: add build fix pulled from upstream.
+    - upstream/allowed-state.patch: add build fix pulled from upstream.
+    - upstream/pdfium-libpng.patch: add build fix pulled from upstream.
+    - upstream/safety-hub-set.patch: add build fix pulled from upstream.
+
+  [ Timothy Pearson ]
+  * d/patches/ppc64le:
+    - sandbox/features.gni: refresh for upstream changes
+    - third_party/0003-third_party-ffmpeg-Add-ppc64-generated-config.patch:
+      regenerate from upstream sources
+    - fixes/fix-partition-alloc-compile.patch: refresh for upstream changes
+    - third_party/skia-vsx-instructions.patch: refresh for upstream changes
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 27 May 2025 23:46:49 -0400
+
+chromium (136.0.7103.113-1) unstable; urgency=high
+
+  * New upstream security release.
+    - CVE-2025-4664: Insufficient policy enforcement in Loader.
+      Source: X post from @slonser_.
+    - CVE-2025-4609: Incorrect handle provided in unspecified circumstances
+      in Mojo. Reported by Micky.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 14 May 2025 14:41:31 -0400
+
+chromium (136.0.7103.92-2) unstable; urgency=high
+
+  * d/patches/upstream/arm32-crel.patch: add another armhf FTBFS fix;
+    linking with CREL causes segfaults.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 07 May 2025 12:11:17 -0400
+
+chromium (136.0.7103.92-1) unstable; urgency=high
+
+  [ Andres Salomon ]
+  * New upstream security release.
+   - CVE-2025-4372: Use after free in WebAudio.
+      Reported by Huang Xilin of Ant Group Light-Year Security Lab.
+  * Drop yasm build-dep; upstream switched to nasm about 5 years ago
+    (closes: #1104218).
+
+  [ Daniel Richard G. ]
+  * d/patches/fixes/armhf-no-thumb.patch: Fix armhf FTBFS due to use of a
+    Rust target (thumbv7neon) that Debian does not ship.
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 06 May 2025 14:13:50 -0400
+
+chromium (136.0.7103.59-2) unstable; urgency=high
+
+  * Delete third_party/jetstream due to non-free ("do no evil") license.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 30 Apr 2025 17:38:38 -0400
+
+chromium (136.0.7103.59-1) unstable; urgency=high
+
+  [ Andres Salomon ]
+  * New upstream stable release.
+    - CVE-2025-4096: Heap buffer overflow in HTML. Reported by Anonymous.
+    - CVE-2025-4050: Out of bounds memory access in DevTools.
+      Reported by Anonymous.
+    - CVE-2025-4051: Insufficient data validation in DevTools.
+      Reported by Daniel Fröjdendahl.
+    - CVE-2025-4052: Inappropriate implementation in DevTools.
+      Reported by vanillawebdev.
+  * d/rules: disable warning-suppression-mappings; llvm too old.
+  * d/control: drop libevent-dev build-dep, no longer used.
+  * d/scripts/unbundle:
+    - libavif no longer used, no need to specify bundling.
+    - bundle simdutf, which isn't packaged for debian.
+  * d/patches:
+    - fixes/pipewire14.patch: drop, merged upstream.
+    - disable/catapult.patch: refresh.
+    - disable/buildtools-libc.patch: rework patch to be easier to maintain.
+    - bookworm/gn-revert-path-exists.patch: update for a bunch of new
+      path_exists() users.
+    - disable/node-version-ck.patch: add patch to disable upstream's strict
+      nodejs version check.
+    - fixes/media-cstdint.patch: add missing header include.
+    - upstream/media-optional.patch: add missing header include.
+    - fixes/perfetto-nullptr.patch: add nullptr_t std qualification.
+
+  [ Timothy Pearson ]
+  * d/patches/ppc64le:
+    - third_party/0001-third_party-lss-Don-t-look-for-mmap2-on-ppc64.patch:
+      drop due to upstream fixes
+    - third_party/0002-third_party-lss-kernel-structs.patch: refresh for
+      upstream changes
+    - breakpad/0001-Implement-support-for-ppc64-on-Linux.patch: refresh for
+      upstream changes
+    - core/cargo-add-ppc64.diff: drop due to upstream fixes
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 29 Apr 2025 17:21:56 -0400
+
+chromium (135.0.7049.114-1) unstable; urgency=high
+
+  * New upstream security release.
+  * Drop python3-pkg-resources build dep (closes: #1083336).
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 22 Apr 2025 22:42:31 -0400
+
+chromium (135.0.7049.95-1) unstable; urgency=high
+
+  [ Andres Salomon ]
+  * New upstream security release.
+    - CVE-2025-3619: Heap buffer overflow in Codecs. Reported by Elias Hohl.
+    - CVE-2025-3620: Use after free in USB. Reported by @retsew0x01.
+
+  [ Daniel Richard G. ]
+  * d/copyright, d/patches/system/rapidjson.patch: Slightly narrow the scope
+    of the bundled RapidJSON deletion, and rework this patch so that it does
+    not require the deletion in order to apply. This allows applying the
+    debianization directly to the unrepackaged upstream tarball source.
+  * d/patches/system/gperf.patch: Import (self-authored) upstream patch to
+    prevent build breakage due to changes in gperf 3.2 generated code
+    (closes: #1103226).
+  * d/rules: Add new check-version rule to validate the package version.
+    Also squelch error messages due to absent clang and rustc executables.
+  * d/rules: Download Gentoo's upstream source tarball straight from GitHub.
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 15 Apr 2025 22:12:30 -0400
+
+chromium (135.0.7049.84-1) unstable; urgency=high
+
+  * New upstream security release (closes: #1101978).
+    - CVE-2025-3066: Use after free in Site Isolation.
+      Reported by Sven Dysthe (@svn-dys).
+  * d/patches/fixes/rust-clanglib.patch: refresh.
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 08 Apr 2025 16:57:37 -0400
+
+chromium (135.0.7049.52-1) unstable; urgency=high
+
+  [ Andres Salomon ]
+  * New upstream stable release.
+    - CVE-2025-3066: Use after free in Navigations.
+      Reported by Sven Dysthe (@svn-dys).
+    - CVE-2025-3067: Inappropriate implementation in Custom Tabs.
+      Reported by Philipp Beer (TU Wien).
+    - CVE-2025-3068: Inappropriate implementation in Intents.
+      Reported by Simon Rawet.
+    - CVE-2025-3069: Inappropriate implementation in Extensions.
+      Reported by NDevTK.
+    - CVE-2025-3070: Insufficient validation of untrusted input in
+      Extensions.
+    - CVE-2025-3071: Inappropriate implementation in Navigations.
+      Reported by David Erceg.
+    - CVE-2025-3072: Inappropriate implementation in Custom Tabs.
+      Reported by Om Apip.
+    - CVE-2025-3073: Inappropriate implementation in Autofill.
+      Reported by Hafiizh.
+    - CVE-2025-3074: Inappropriate implementation in Downloads.
+      Reported by Farras Givari.
+  * d/patches:
+    - upstream/optional.patch: drop, merged upstream.
+    - upstream/qualifications.patch: drop, merged upstream.
+    - fixes/lens-optional.patch: drop, merged upstream.
+    - fixes/optional.patch: drop, merged upstream.
+    - fixes/swiftshader-llvm.patch: drop, merged upstream.
+    - fixes/variant.patch: drop, merged upstream.
+    - bookworm/clang19.patch: refresh.
+    - bookworm/gn-revert-path-exists.patch: add build fix to work around
+      older gn.
+    - ungoogled/disable-privacy-sandbox.patch: refresh from ungoogled.
+    - fixes/make-pair.patch: add a gcc-specific build fix.
+    - disable/buildtools-libc.patch: add patch to remove libc build stuff.
+
+  [ Timothy Pearson ]
+  * Enable pointer compression on ppc64le
+    This fixes V8 OOM conditions noted on e.g. https://trac.ffmpeg.org
+  * d/patches/ppc64le:
+    - v8/0001-Enable-ppc64-pointer-compression.patch
+    - sandbox/0001-sandbox-linux-Update-syscall-helpers-lists-for-ppc64.patch:
+      refresh for upstream changes
+
+  [ Daniel Richard G. ]
+  * d/rules: Add switch to allow downloading either Google's upstream tarball,
+    or an independently-created one from Gentoo. Default to the latter.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 02 Apr 2025 02:04:23 -0400
+
+chromium (134.0.6998.117-1) unstable; urgency=high
+
+  * New upstream security release.
+    - CVE-2025-2476: Use after free in Lens.
+      Reported by SungKwon Lee of Enki Whitehat.
+
+ -- Andres Salomon <dilinger@debian.org>  Wed, 19 Mar 2025 20:04:39 -0400
+
+chromium (134.0.6998.88-1) unstable; urgency=high
+
+  * New upstream security release.
+    - CVE-2025-1920: Type Confusion in V8. Reported by Excello s.r.o.
+    - CVE-2025-2135: Type Confusion in V8.
+      Reported by Zhenghang Xiao (@Kipreyyy).
+    - CVE-2025-24201: Out of bounds write in GPU on Mac. Reported by
+      Apple Security Engineering and Architecture (SEAR).
+    - CVE-2025-2136: Use after free in Inspector. Reported by Sakana.S.
+    - CVE-2025-2137: Out of bounds read in V8. Reported by zeroxiaobai@.
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 11 Mar 2025 14:28:43 -0400
+
+chromium (134.0.6998.35-3) unstable; urgency=high
+
+  * Fix FTBFS with pipewire 1.4.0.
+
+ -- Andres Salomon <dilinger@debian.org>  Sat, 08 Mar 2025 13:35:36 -0500
 
 chromium (134.0.6998.35-2) unstable; urgency=high
 

@@ -1,0 +1,31 @@
+ERROR at //build/config/BUILDCONFIG.gn:561:19: Unable to load "/chromium-135.0.7049.41/buildtools/third_party/libc++/BUILD.gn".
+        deps += [ "//buildtools/third_party/libc++:std" ]
+                  ^------------------------------------
+
+
+Since we're not building clang, we don't need this.
+
+--- a/build/config/BUILDCONFIG.gn
++++ b/build/config/BUILDCONFIG.gn
+@@ -560,7 +560,9 @@ foreach(_target_type,
+       if (is_clang && (!defined(invoker.use_libcxx_modules) ||
+                        invoker.use_libcxx_modules)) {
+         # This is necessary for Clang modules builds.
+-        deps += [
++        junk = []
++        not_needed(["junk"])
++        junk = [
+           "//buildtools/third_party/libc++:std",
+           "//buildtools/third_party/libc++:std_config",
+           "//buildtools/third_party/libc++:std_core",
+@@ -664,7 +666,9 @@ foreach(_target_type,
+       if (is_clang && (!defined(invoker.use_libcxx_modules) ||
+                        invoker.use_libcxx_modules)) {
+         # These are necessary for Clang modules builds.
+-        deps += [
++        junk = []
++        not_needed(["junk"])
++        junk = [
+           "//buildtools/third_party/libc++:_Builtin_limits",
+           "//buildtools/third_party/libc++:_Builtin_stdarg",
+           "//buildtools/third_party/libc++:_Builtin_stddef",

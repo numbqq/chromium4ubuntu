@@ -1,0 +1,10 @@
+--- chromium-137.0.7151.55.orig/third_party/minigbm/BUILD.gn
++++ chromium-137.0.7151.55/third_party/minigbm/BUILD.gn
+@@ -61,6 +61,7 @@ if (!use_system_minigbm) {
+   shared_library("minigbm") {
+     sources = [
+       "src/amdgpu.c",
++      "src/backend_mock.c",
+       "src/dri.c",
+       "src/drv.c",
+       "src/drv_array_helpers.c",
