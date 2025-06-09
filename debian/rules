@@ -249,7 +249,7 @@ else
 url=https://github.com/chromium-linux-tarballs/chromium-tarballs/releases/download/$(version)
 tarfile=$(extract)-linux.tar
 endif
-version:=$(shell dpkg-parsechangelog -S Version | sed s/-.*//)
+version:=$(shell dpkg-parsechangelog -S Version | sed s/-.*// | sed s/.*://)
 extract=chromium-$(version)
 tarball=$(tarfile).xz
 debvers=../chromium_$(version)
