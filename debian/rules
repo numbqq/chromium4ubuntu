@@ -33,8 +33,8 @@ endif
 # compile with clang (gcc is currently not supported)
 export AR=ar
 export NM=nm
-export CC=clang-18
-export CXX=clang++-18
+export CC=clang-19
+export CXX=clang++-19
 
 # initial flags from dpkg-buildflags
 export DEB_CXXFLAGS_MAINT_STRIP=-g
@@ -43,8 +43,8 @@ ifneq ($(filter armhf,$(DEB_HOST_ARCH)),)
 export   DEB_CFLAGS_MAINT_STRIP+=-fno-stack-clash-protection
 export DEB_CXXFLAGS_MAINT_STRIP+=-fno-stack-clash-protection
 endif
-export CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
-export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+export CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS) -stdlib=libc++
+export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS) -stdlib=libc++ -static-libstdc++
 
 # more verbose linker output
 export LDFLAGS+=-Wl,--stats
@@ -200,6 +200,8 @@ override_dh_auto_configure: test_armhf_neon
 
 override_dh_auto_build-arch:
 	gn gen out/Release --args="$(defines)"
+	# Avoid chromium-shell -> libtest_trace_processor.so dependency
+	sed -i '/^  solibs =/s! \./libtest_trace_processor\.so!!' out/Release/obj/content/shell/content_shell.ninja
 	# XtraDeb workaround for https://crbug.com/40943790
 	ninja -j$(njobs) -C out/Release ui/webui/resources/cr_components/history_clusters:build_ts
 	$(keepalive) ninja -j$(njobs) -C out/Release chrome chrome_sandbox content_shell chromedriver headless_shell
