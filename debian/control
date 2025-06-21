@@ -1,7 +1,7 @@
 Source: chromium
 Section: web
 Priority: optional
-Maintainer: XtraDeb User <xtradeb.user@example.com>
+Maintainer: Daniel Richard G. <skunk@iSKUNK.ORG>
 XSBC-Original-Maintainer: Debian Chromium Team <chromium@packages.debian.org>
 Vcs-Git: https://salsa.debian.org/chromium-team/chromium.git
 Vcs-Browser: https://salsa.debian.org/chromium-team/chromium

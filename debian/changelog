@@ -1,14 +1,28 @@
-chromium (2:137.0.7151.103-1xtradeb1.2404.1) noble; urgency=high
+chromium (2:137.0.7151.119-1xtradeb1.2404.1) noble; urgency=high
 
   * Chromium 137 adopted for VIM boards
 
- -- Gunjan Gupta <gunjan@wesion.com>  Sun, 12 Jun 2025 12:46:48 +0530
+ -- Gunjan Gupta <gunjan@wesion.com>  Fri, 20 Jun 2025 10:10:48 +0530
 
-chromium (137.0.7151.103-1xtradeb1.2404.1) noble; urgency=high
+chromium (137.0.7151.119-1xtradeb1.2404.1) noble; urgency=high
 
   * XtraDeb conversion for Ubuntu 24.04/noble.
 
- -- XtraDeb User <xtradeb.user@example.com>  Thu, 12 Jun 2025 12:31:43 +0530
+ -- Daniel Richard G. <skunk@iSKUNK.ORG>  Wed, 18 Jun 2025 04:33:59 -0400
+
+chromium (137.0.7151.119-1) unstable; urgency=high
+
+  * New upstream security release.
+    - CVE-2025-6191: Integer overflow in V8. Reported by Shaheen Fazim.
+    - CVE-2025-6192: Use after free in Profiler.
+      Reported by Chaoyuan Peng (@ret2happy).
+  * Include libtest_trace_processor.so in chromium-shell package.
+    (closes: #1107837).
+  * d/patches:
+    - fixes/armhf-icf.patch: add workaround for build failure on armhf
+      (thanks Daniel Richard G!).
+
+ -- Andres Salomon <dilinger@debian.org>  Tue, 17 Jun 2025 19:12:16 -0400
 
 chromium (137.0.7151.103-1) unstable; urgency=high
 
