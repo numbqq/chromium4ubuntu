@@ -16,14 +16,15 @@ fixes/predictor-denial-of-service.patch
 fixes/fix-assert-in-vnc-sessions.patch
 fixes/armhf-timespec.patch
 fixes/updater-test.patch
-#xtradeb#fixes/absl-optional.patch
-fixes/font-gc-asan.patch
+#fixes/absl-optional.patch
+#fixes/font-gc-asan.patch
 fixes/libsync-rk3588-panthor.patch
 fixes/headless-gn.patch
-fixes/stdatomic.patch
-fixes/make-pair.patch
+#fixes/stdatomic.patch
+#fixes/make-pair.patch
 fixes/media-cstdint.patch
 fixes/armhf-no-thumb.patch
+fixes/armhf-icf.patch
 
 upstream/arm32-crel.patch
 upstream/cross-build-target.patch
@@ -59,11 +60,12 @@ system/rollup.patch
 
 bookworm/gn-revert-path-exists.patch
 bookworm/clang19.patch
-bookworm/constflatset.patch
+#bookworm/constflatset.patch
 bookworm/libxml-parseerr.patch
 bookworm/gn-allowlist.patch
 bookworm/adler1.patch
-bookworm/constexpr3.patch
+#bookworm/constexpr3.patch
+bookworm/foreach.patch
 
 # unused patches:
 # bookworm/blink-attrib.patch
@@ -172,24 +174,15 @@ ppc64le/fixes/fix-unknown-warning-option-messages.diff
 #ppc64le/core/baseline-isa-3-0.patch
 
 # XtraDeb
-bookworm/cacheline.patch
 bookworm/derivre-create.patch
-bookworm/foreach.patch
-bookworm/fmodf.patch
 bookworm/gn-absl.patch
 bookworm/gn-funcs.patch
 bookworm/highway-blink.patch
-bookworm/less-void.patch
-bookworm/modff.patch
 bookworm/node18-import.patch
 bookworm/rust-is-none-or.patch
 bookworm/rust-visibility.patch
-fixes/absl-optional-bookworm.patch
-xtradeb/clang-unknown-options.patch
 xtradeb/eslint.patch
-xtradeb/flat-map-try-emplace.patch
 xtradeb/fortify-level-3.patch
-xtradeb/template-args.patch
 minigbm-compilation-fix.patch
 fixes/gbm_pixmap-Avoid-spamming-BO-create-failures.patch
 fixes/reduce_stderr_spam.patch
