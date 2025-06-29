@@ -17,7 +17,7 @@ Build-Depends:
  libclang-rt-19-dev,
  libc++-19-dev,
  rustc-1.80:any,
- libstd-rust-1.80-dev <cross>,
+ libstd-rust-1.80-dev,
  bindgen:native,
  python3:any,
  pkgconf,
@@ -93,7 +93,7 @@ Build-Depends:
  libzstd-dev,
  fonts-ipafont-gothic,
  fonts-ipafont-mincho,
- qemu-user <cross>,
+ cross-exe-wrapper <cross>,
 Build-Conflicts:
  bindgen-0.56,
  bindgen-0.65,
