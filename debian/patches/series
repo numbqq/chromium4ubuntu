@@ -22,18 +22,9 @@ fixes/libsync-rk3588-panthor.patch
 fixes/headless-gn.patch
 #fixes/stdatomic.patch
 #fixes/make-pair.patch
-fixes/media-cstdint.patch
 fixes/armhf-no-thumb.patch
 fixes/armhf-icf.patch
 
-upstream/arm32-crel.patch
-upstream/cross-build-target.patch
-upstream/span-fwd.patch
-upstream/mojo-optional.patch
-upstream/opener-heur.patch
-upstream/allowed-state.patch
-upstream/pdfium-libpng.patch
-upstream/safety-hub-set.patch
 
 disable/tests.patch
 disable/tests-swiftshader.patch
@@ -177,9 +168,10 @@ ppc64le/fixes/fix-unknown-warning-option-messages.diff
 bookworm/derivre-create.patch
 bookworm/gn-absl.patch
 bookworm/gn-funcs.patch
-bookworm/highway-blink.patch
+bookworm/gn-hpp11.patch
 bookworm/node18-import.patch
 bookworm/rust-is-none-or.patch
+bookworm/rust-unstable-features.patch
 bookworm/rust-visibility.patch
 xtradeb/eslint.patch
 xtradeb/fortify-level-3.patch
